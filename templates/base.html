@@ -10,8 +10,8 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>وبلاگ فاطمه احمدی</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>شرکت مشاوره نهال امید</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/nahal.png' %}" />
     <!--Vazirmatn font-->
     <link
       href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
@@ -43,9 +43,28 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <style>
+      .accordion-body ul li {
+        margin-bottom: 0.75rem; /* حدود mb-3 */
+      }
+      .gray-color,
+      .accordion-button,
+      .accordion-button:not(.collapsed) {
+        background-color: #eff3f7 !important;
+      }
+      .vazirmatn-fontfamily,
+      .accordion-button,
+      .accordion-body {
+        font-family: Vazirmatn, sans-serif !important;
+      }
+    </style>
   </head>
 
-  <body id="body" style="font-family: Vazirmatn, sans-serif !important">
+  <body
+    id="body"
+    class="gray-color"
+    style="font-family: Vazirmatn, sans-serif !important"
+  >
     <nav
       style="font-family: Vazirmatn, sans-serif !important"
       class="navbar navbar-expand-lg navbar-light"
@@ -74,7 +93,7 @@
           aria-label="Toggle navigation"
           style="font-family: Vazirmatn, sans-serif !important"
         >
-          Menu
+          منو
           <i class="fas fa-bars"></i>
         </button>
         <div
@@ -114,9 +133,15 @@
       <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            <div class="site-heading">
-              <h1>فاطمه</h1>
-              <span class="subheading">غلی</span>
+            <div class="site-heading" style="font-family: Vazirmat !important">
+              <h1 style="font-family: Vazirmatn, sans-serif !important">
+                نهال امید
+              </h1>
+              <span
+                class="subheading"
+                style="font-family: Vazirmatn, sans-serif !important"
+                >مشاوره سرمایه، نهال امید</span
+              >
             </div>
           </div>
         </div>
@@ -124,60 +149,72 @@
     </header>
 
     <!-- Main Content-->
-    <div
-      style="font-family: Vazirmatn, sans-serif !important"
-      class="container px-4 px-lg-5"
+    
+    {% block maincontent %}
+        
+    {% endblock maincontent %}
+        
+    
+<footer
+      class="text-white pt-5 pb-3"
+      style="background-color: #0C2C5E;"
     >
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div
-          style="font-family: Vazirmatn, sans-serif !important"
-          class="col-md-10 col-lg-8 col-xl-7"
-        >
-          <!-- Post preview-->
-
-          {% for blog in blogs %}
-          <div
-            style="font-family: Vazirmatn, sans-serif !important"
-            class="post-preview"
-          >
-            <a
-              style="font-family: Vazirmatn, sans-serif !important"
-              href="{% url 'detaileblog' blog.id %}"
-            >
-              <h2
-                style="font-family: Vazirmatn, sans-serif !important"
-                class="post-title"
-              >
-                {{blog.titel}}
-              </h2>
-            </a>
-
-            <a href="{% url 'detaileblog' blog.id %}">
-              <h3 class="post-subtitle">{{blog.sub_titel}}</h3>
-            </a>
-            <!-- <p class="post-meta">
-                        Posted by
-                        <a href="#!">{{blog.author}}</a>
-                        on {{blog.date}}
-                    </p> -->
+      <div class="container">
+        <div class="row d-flex flex-row-reverse">
+          <!-- عضویت در خبرنامه -->
+          <div class="col-md-4 mb-4">
+            <h5 class="fw-bold mb-3">عضویت در خبرنامه :</h5>
+            <hr class="border-light" />
+            <form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control rounded-pill"
+                  placeholder="نام"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="email"
+                  class="form-control rounded-pill"
+                  placeholder="ایمیل خود را وارد کنید"
+                />
+              </div>
+              <button type="submit" class="btn btn-success w-100 rounded-pill">
+                ارسال
+              </button>
+            </form>
           </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-          {% endfor %}
 
-          <!-- Pager-->
-
-          {% if blogs %}
-          <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="{% url 'allblog' %}"
-              >Older Posts →</a
-            >
+          <!-- سوالات -->
+          <div class="col-md-4 mb-4 text-center">
+            <h5 class="fw-bold mb-3"></h5>
+            <!-- فضای خالی یا آینده -->
           </div>
-          {% endif %}
+
+          <!-- ارتباط با ما -->
+          <div class="col-md-4 mb-4">
+            <h5 class="fw-bold mb-3 text-end">ارتباط با ما :</h5>
+            <hr class="border-light" />
+            <ul class="list-unstyled text-end">
+              <li class="mb-2">
+                <i class="bi bi-geo-alt-fill ms-2"></i> قم - خیابان هفت تیر -
+                ساختمان 313
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-telephone-fill ms-2"></i> 02191306976
+              </li>
+              <li><i class="bi bi-whatsapp ms-2"></i> 09190446414</li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
 
+        <hr class="border-light" />
+        <p class="text-center small mt-3 mb-0">
+          کلیه حقوق این وب‌سایت متعلق به شرکت مشاور سرمایه نهال امید می‌باشد.
+        </p>
+      </div>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

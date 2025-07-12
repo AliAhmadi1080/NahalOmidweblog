@@ -1,6 +1,7 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
+{% block maincontent %}
   <!-- Main Content-->
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -28,3 +29,6 @@
         </div>
     </div>
 </div>
+    
+{% endblock maincontent %}
+    
