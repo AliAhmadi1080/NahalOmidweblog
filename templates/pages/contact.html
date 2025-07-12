@@ -1,5 +1,7 @@
-{% include "base.html" %} {% load static %}
-<div class="contianer">
+{% extends "base.html" %} {% load static %}
+
+{% block maincontent %}
+    <div class="contianer">
   <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
@@ -35,3 +37,9 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
+
+{% endblock maincontent %}
+    
