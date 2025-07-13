@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.http.request import HttpRequest
+from django.core.mail import send_mail
 from blog.models import Blog, Comment
 from django.conf import settings
-from django.core.mail import send_mail
+from django.db.models import Q
 # Create your views here.
 
 
@@ -12,9 +14,6 @@ def aboutpage(request):
 def contactpage(request):
     if request.method == 'POST':
         if request.POST['email'].strip() != '' and request.POST['text'].strip != '':
-
-            print(request.POST)
-
             subject = f'Fatemeh site-contact masege from {request.POST["email"]}'
             message = request.POST['text']
             email_from = settings.EMAIL_HOST_USER
@@ -36,7 +35,6 @@ def detaleblog(request, pk):
     if request.method == 'POST':
         comment = Comment(
             blog=a, text=request.POST['text'], name=request.POST['name'])
-        print(comment)
         comment.save()
 
     b = Comment.objects.all().filter(blog=a, status='published')
@@ -44,8 +42,8 @@ def detaleblog(request, pk):
     return render(request, 'pages/blogdetaile.html', {'blogdetale': a, 'comments': b})
 
 
-def allblog(request):
-    a = Blog.objects.all()
-    context = {'bloglist': a}
-    print(a, context)
+def allblog(request: HttpRequest):
+    parameter = request.GET.get("blogtitle", '')
+    allblogs = Blog.objects.filter(Q(titel__contains=parameter) | Q(sub_titel__contains=parameter))
+    context = {'bloglist': allblogs}
     return render(request, 'pages/bloglist.html', context)

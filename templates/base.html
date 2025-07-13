@@ -11,7 +11,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>شرکت مشاوره نهال امید</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/nahal.png' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'assets/img/nahal.png' %}"
+    />
     <!--Vazirmatn font-->
     <link
       href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
@@ -81,7 +85,7 @@
           "
           class="navbar-brand"
           href="{% url 'homepage' %}"
-          >خانه</a
+          >نهال امید</a
         >
         <button
           class="navbar-toggler"
@@ -121,6 +125,26 @@
                 >تماس با من</a
               >
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link px-lg-3 py-3 py-lg-4"
+                href="{% url 'allblog' %}"
+                style="font-size: 15px !important"
+                >وبلاگ</a
+              >
+            </li>
+            <li class="nav-item">
+              <form class="d-flex nav-link px-lg-3 py-3" action="{% url 'allblog' %}" method="GET">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  name="blogtitle"
+                  placeholder="جستجو نام مطلب"
+                  aria-label="Search"
+                />
+                <button class="btn btn-primary" type="submit">جستجو</button>
+              </form>
+            </li>
           </ul>
         </div>
       </div>
@@ -149,16 +173,10 @@
     </header>
 
     <!-- Main Content-->
-    
-    {% block maincontent %}
-        
-    {% endblock maincontent %}
-        
-    
-<footer
-      class="text-white pt-5 pb-3"
-      style="background-color: #0C2C5E;"
-    >
+
+    {% block maincontent %} {% endblock maincontent %}
+
+    <footer class="text-white pt-5 pb-3" style="background-color: #0c2c5e">
       <div class="container">
         <div class="row d-flex flex-row-reverse">
           <!-- عضویت در خبرنامه -->
