@@ -9,6 +9,10 @@ class Categorys(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
 
 
 class Blog(models.Model):
@@ -32,7 +36,9 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return reverse('detaileblog', args=[str(self.pk)])
 
-
+    class Meta:
+        verbose_name = "وبلاگ"
+        verbose_name_plural = "وبلاگ ها "
 class Comment(models.Model):
     STATUS_CHOICES = (
         ('checking', 'درحال بررسی'),
@@ -50,6 +56,10 @@ class Comment(models.Model):
     def __str__(self) -> str:
         return f'{self.blog.titel}'
 
+    class Meta:
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
+
 
 class Like(models.Model):
     user = models.ForeignKey(
@@ -60,6 +70,10 @@ class Like(models.Model):
 
     def __str__(self) -> str:
         return f'{self.user} -> {self.is_liked}'
+
+    class Meta:
+        verbose_name = "لایک"
+        verbose_name_plural = "لایک ها"
 
 
 class Consultation(models.Model):
@@ -86,6 +100,10 @@ class Consultation(models.Model):
         self.full_clean()
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = "مشاوره"
+        verbose_name_plural = "مشاوره ها"
+
 
 class Subscriber(models.Model):
     full_name = models.CharField(
@@ -107,3 +125,7 @@ class Subscriber(models.Model):
         self.full_clean()
         self.email = self.email.replace('.', '')
         return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "عضو خبرنامه"
+        verbose_name_plural = "اعضای خبرنامه"
